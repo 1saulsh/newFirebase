@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
     <title>Train Scheduler</title>
 
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Link to Font Awesome CSS CDN for Glpyhicons -->
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!--jquery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <!--Initialize Firebase-->
-    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
-
+    <!-- firebase-->
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    <!--moment.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <!--javascript-->
+    <script type="text/javascript" src="assets/javascript/firebase.js"></script>
+    
 </head>
 <body>
     
@@ -49,7 +56,7 @@
                 </div>
                 </div>
 
-                <!-- Add Train-->
+                <!-- Add Train to Schedule-->
                 <div class ="panel panel-info">
                     <div class="panel-heading">
                         <h3 class= "panel-title"><strong>Add Train</strong></h3>
@@ -59,22 +66,22 @@
                         <!-- Entry Form-->
                         <form>
                             <div class="form-group">
-                                <label for="train-name-input">Train Name</label>
-                                <input class="form-control" id= "train-name-input" type="text">
+                                <label for="trainNameInput">Train Name</label>
+                                <input class="form-control" id= "trainNameInput" type="text">
                             </div>
                             <div class="form-group">
-                                <label for="destination-input">Destination</label>
-                                <input class="form-control" id= "destination-input" type="text">
+                                <label for="destinationInput">Destination</label>
+                                <input class="form-control" id= "destinationInput" type="text">
                             </div>
                             <div class="form-group">
-                                    <label for="first-train-input">First Train Time (HH:mm-military time)</label>
-                                    <input class="form-control" id= "first-train-input" type="text">
+                                    <label for="firstTrainInput">First Train Time (HH:mm-military time)</label>
+                                    <input class="form-control" id= "firstTrainInput" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <label for="frequency-input">Frequency (min)</label>
-                                    <input class="form-control" id= "frequency-input" type="text">
+                                    <label for="frequencyInput">Frequency (min)</label>
+                                    <input class="form-control" id= "frequencyInput" type="text">
                                 </div>
-                                <button class="btn btn-primary" id="add-train-btn" type="submit">Submit</button>
+                                <button class="btn btn-primary" id="addTrainBtn" type="submit">Submit</button>
                            
                         </form>
                 </div>
@@ -82,11 +89,6 @@
         </div>
       </div>
     </div>
-
-    <!--javascript-->
-    <script src="./assets/javascript/firebase.js"></script>
-    <!--jQuery-->
-    <script src="https://code.jquery.com/jquery.js"></script>
 
 </body>
 </html>
