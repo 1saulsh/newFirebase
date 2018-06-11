@@ -16,7 +16,9 @@ In this assignment, the objective was to create a train schedule application tha
 -Added Functionality
 -Form Validation for correct time input
 
-**Link**
+**Video**
+https://drive.google.com/file/d/1RIv7K001_N0dn0JskXXMt9ysAjg47Gk9/view
+
 Train-Schedule
 
 **Example Site**
