@@ -1,79 +1,98 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
     <title>Train Scheduler</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-   
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" >
-    
-    <!-- Latest compiled and minified CSS -->   
+
+    <!-- Link to custom CSS -->
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <!--bootstrap css-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-   
-
-    <script src="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.3.0/firebaseui.css" />
-
-</head>
-
-<body>
-
-    <div class="container">
-        <div class="row">
-            <header>Don't Miss the Party Train</header>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row sign-in">
-            <h2 class="logInHeader">Please Sign In</h2>
-            <div id="firebaseui-auth-container"></div>
-        </div>
-    </div>
-
-    
-<form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" id="addTrainBtn" class="btn btn-primary">Submit</button>
-  </form>
-
-    
-
-     
+    <!--bootstrap js-->
+    <script "https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <!--firebase-->
     <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
- 
-    <script>
+    <!--moment js-->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+</head>
+<body>
     
-    // Initialize and connect Firebase server
-    var config = {
-      apiKey: "AIzaSyCiaqN41r48LNVRPrSfQwRwYgrbgsDwB7k",
-      authDomain: "train-scheduler-db020.firebaseapp.com",
-      databaseURL: "https://train-scheduler-db020.firebaseio.com",
-      projectId: "train-scheduler-db020",
-      storageBucket: "train-scheduler-db020.appspot.com",
-      messagingSenderId: "101915537776"
-    };
-  
-    firebase.initializeApp(config);
+    <!-- Train Scheduler-->
+    <div class= "container">
 
-    </script>
+        <!--JumboTron-->
+        <div class="jumbotron" style="background-color:navy; color: orangered">
+        <h1 class="text-center"><strong> Party Train Scheduler</strong></h1>
+        <h3 class="text-center"><strong>Chug Life... Choo Choo!</strong></h3>
+        </div>
 
-    <script src="assets/javascript/firebase.js"></script>
+      <!-- Current Train Schedule-->
+      <div class = "row">
+        <div class = "col-lg-12">
+            <div class= "panel panel-info">
+                <div class="panel-heading">
+                    <h3 class = "panel-title"><strong>Current Train Schedule</strong></h3>
+                </div>
+                <div class ="panel-body">
+                    <table class = "table table-hover" id="train-table">
+                        <thead>
+                            <tr>
+                                <th>Train Name</th>
+                                <th>Destination</th>
+                                <th>Frequency (min)</th>
+                                <th>Next Arrival</th>
+                                <th>Minutes Away</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- LEAVE EMPTY b/c will be populated with user input using firebase and jquery-->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+      </div>    
+                <!-- Add Train to Schedule-->
+                <div class = "row">
+                    <div class = "col-lg-12">
+                        <div class ="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class= "panel-title"><strong>Add Train</strong></h3>
+                            </div>
+                            <div class= "panel-body">
 
+                                <!-- Entry Form used to populate firebase database-->
+                                <form>
+                                    <div class="form-group">
+                                        <label for="trainNameInput">Train Name</label>
+                                        <input class="form-control" id= "trainNameInput" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="destinationInput">Destination</label>
+                                        <input class="form-control" id= "destinationInput" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="firstTrainInput">First Train Time (HH:mm - military time)</label>
+                                        <input class="form-control" id= "firstTrainInput" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="frequencyInput">Frequency (min)</label>
+                                        <input class="form-control" id= "frequencyInput" type="text">
+                                    </div>
+                                    <button class="btn btn-primary" id="addTrainBtn" type="submit">Submit</button>
+                           
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+   </div>
+
+<script type= "text/javascript" src = "assets/javascript/firebase.js"></script>
 </body>
-
 </html>
